@@ -1,0 +1,61 @@
+/** Reset Styles **/
+
+/* Box sizing and inheritance */
+*, *::before, *::after {
+    box-sizing: border-box;
+  }
+  
+  * {
+    margin: 0;
+    padding: 0;
+    font: inherit;
+  }
+  
+  /* Remove default list styles */
+  ul, ol {
+    list-style: none;
+  }
+  
+  /* Reset anchor styles */
+  a {
+    text-decoration: none;
+    color: inherit;
+  }
+  
+  /* Reset images and media */
+  img, picture, video, canvas, svg {
+    display: block;
+    max-width: 100%;
+  }
+  
+  /* Prevent text overflow issues */
+  html {
+    scroll-behavior: smooth;
+    font-size: 16px; /* Adjust for accessibility */
+  }
+  
+  body {
+    min-height: 100vh;
+    line-height: 1.5;
+    text-rendering: optimizeSpeed;
+    -webkit-font-smoothing: antialiased;
+  }
+  
+  /* Ensure buttons inherit fonts */
+  button, input, select, textarea {
+    font: inherit;
+    border: none;
+    background: none;
+    outline: none;
+  }
+  
+  /* Prevent animations from running on page load */
+  @media (prefers-reduced-motion: reduce) {
+    * {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+  

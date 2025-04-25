@@ -6,17 +6,17 @@ class SignupContr {
 
     private $uemail;
     private $pwd;
-    private $pwdrepeat; 
+    private $pwdRepeat; 
         
     public function __construct($uid, $uemail, $pwd, $pwdrepeat) {
-        $this->$uid = $uid;
-        $this->$uemail = $uemail;
-        $this->$pwd = $pwd;
-        $this->$pwdrepeat = $pwdrepeat;        
+        $this->uid = $uid;
+        $this->uemail = $uemail;
+        $this->pwd = $pwd;
+        $this->pwdrepeat = $pwdRepeat;        
     }
 
 
-    private function signupUser() {
+    public function signupUser() {
         if( $this->emptyInput() == false ) {
             header("location: ../index.php?error=emptyinput");
             exit();
@@ -38,14 +38,14 @@ class SignupContr {
             exit();
         }
 
-        $this->setUser($this->$uid, $this->$pwd, $this->$uemail);
+        $this->setUser($this->uid, $this->pwd, $this->uemail);
     }
     
 
     private function emptyInput() {
         $result;
 
-        if(empty($this->$uid) || empty($this->$uemail) || empty($this->$pwd) || empty($this->$pwdreapeat)) {
+        if(empty($this->uid) || empty($this->uemail) || empty($this->pwd) || empty($this->pwdreapeat)) {
             $result = false;
         } else {
             $result = true; 
@@ -92,7 +92,7 @@ class SignupContr {
     private function checkUsesrlogins() {
         $result;
 
-        if ( $this->checkUser($this->$uid, $this->$uemail) ) {
+        if ( !$this->checkUser($this->uid, $this->uemail) ) {
          $result = false;
         } else {
             $result = true;

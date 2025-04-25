@@ -15,6 +15,19 @@ Class SignupContr {
         $this->$pwdrepeat = $pwdrepeat;        
     }
 
+
+    private function signupUser() {
+        if( $this->emptyInput() == false ) {
+            header("location: ../index.php?error=emptyinput");
+            exit();
+        }
+        if( $this->invalidUid() == false ) {
+            header("location: ../index.php?error=emptyinput");
+            exit();
+        }
+    }
+    
+
     private function emptyInput() {
         $result;
 
@@ -25,4 +38,42 @@ Class SignupContr {
         }
         return $result;
     }
+
+    private function invalidUid() {
+        $result;
+
+        if ( !preg_match("/^a-zA-Z0-9]*$", $this->uid) ) {
+         $result = false;
+        } else {
+            $result = true;
+        }
+        return $result;
+
+    }
+    
+    private function invaliduemail() {
+        $result;
+
+        if ( !filter_var($this->uemail, FILTER_VALIDATE_EMAIL) ) {
+         $result = false;
+        } else {
+            $result = true;
+        }
+        return $result;
+
+    }
+
+    private function pwdMatch() {
+        $result;
+
+        if ( $this->pwd !== $this->pwdrepeat ) {
+         $result = false;
+        } else {
+            $result = true;
+        }
+        return $result;
+
+    }
+
+
 }

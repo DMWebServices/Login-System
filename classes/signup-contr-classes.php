@@ -1,6 +1,6 @@
 <?php
 
-Class SignupContr {
+class SignupContr {
     
     private $uid;
 
@@ -22,9 +22,23 @@ Class SignupContr {
             exit();
         }
         if( $this->invalidUid() == false ) {
-            header("location: ../index.php?error=emptyinput");
+            header("location: ../index.php?error=username");
             exit();
         }
+        if( $this->invaliduemail() == false ) {
+            header("location: ../index.php?error=email");
+            exit();
+        }
+        if( $this->pwdMatch() == false ) {
+            header("location: ../index.php?error=passwordmatch");
+            exit();
+        }
+        if( $this->checkUsesrlogins() == false ) {
+            header("location: ../index.php?error=useroremailtaken");
+            exit();
+        }
+
+        $this->setUser($this->$uid, $this->$pwd, $this->$uemail);
     }
     
 
@@ -67,6 +81,18 @@ Class SignupContr {
         $result;
 
         if ( $this->pwd !== $this->pwdrepeat ) {
+         $result = false;
+        } else {
+            $result = true;
+        }
+        return $result;
+
+    }
+
+    private function checkUsesrlogins() {
+        $result;
+
+        if ( $this->checkUser($this->$uid, $this->$uemail) ) {
          $result = false;
         } else {
             $result = true;
